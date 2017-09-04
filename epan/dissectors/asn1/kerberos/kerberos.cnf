@@ -31,9 +31,7 @@ AD-LoginAlias
 AD-MANDATORY-FOR-KDC
 AUTHDATA-TYPE
 ChangePasswdDataMS
-EncryptedData
 EtypeList
-KerberosFlags
 KRB5SignedPath
 KRB5SignedPathData
 KRB5SignedPathPrincipals
@@ -138,34 +136,43 @@ guint32 msgtype;
 	switch(private_data->padata_type){
 	case KRB5_PA_TGS_REQ:
 		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_kerberos_Applications);
- 		break;
+		break;
 	case KRB5_PA_PK_AS_REQ:
 		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_pkinit_PaPkAsReq);
- 		break;
+		break;
  	case KRB5_PA_PK_AS_REP:
 		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_pkinit_PaPkAsRep);
- 		break;
+		break;
 	case KRB5_PA_PAC_REQUEST:
 		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_kerberos_KERB_PA_PAC_REQUEST);
 		break;
 	case KRB5_PA_S4U2SELF:
 		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_kerberos_PA_S4U2Self);
- 		break;
+		break;
 	case KRB5_PA_PROV_SRV_LOCATION:
 		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_krb5_PA_PROV_SRV_LOCATION);
- 		break;
+		break;
 	case KRB5_PA_ENC_TIMESTAMP:
 		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_kerberos_PA_ENC_TIMESTAMP);
- 		break;
+		break;
 	case KRB5_PA_ENCTYPE_INFO:
 		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_kerberos_ETYPE_INFO);
- 		break;
+		break;
 	case KRB5_PA_ENCTYPE_INFO2:
 		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_kerberos_ETYPE_INFO2);
- 		break;
+		break;
 	case KRB5_PA_PW_SALT:
 		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_krb5_PW_SALT);
- 		break;
+		break;
+	case KRB5_PA_AUTHENTICATION_SET:
+		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_kerberos_PA_AUTHENTICATION_SET);
+		break;
+	case KRB5_PADATA_FX_FAST:
+		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_kerberos_PA_FX_FAST_REQUEST);
+		break;
+	case KRB5_PADATA_ENCRYPTED_CHALLENGE:
+		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, dissect_kerberos_EncryptedChallenge);
+		break;
 	default:
 		offset=dissect_ber_octet_string_wcb(FALSE, actx, sub_tree, tvb, offset,hf_index, NULL);
 	}
